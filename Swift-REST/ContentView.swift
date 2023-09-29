@@ -1,21 +1,28 @@
-//
-//  ContentView.swift
-//  Swift-REST
-//
-//  Created by Jakir Hossain on 27/9/23.
-//
-
+//ContentView.swift
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var  posts: [Post] = []
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        NavigationStack {
+            List{
+                ForEach(posts) { post in
+                    NavigationLink(destination: Text(post.title + "\n \n" + post.body) ) {
+                        Text(post.title)
+                    }
+                }
+            }
+        }.padding()
+            .task {
+                do {
+                    posts =  try await  Networking.loadData()
+                    
+                } catch {
+                    print("Error", error)
+                }
+            }
     }
 }
 
