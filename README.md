@@ -1,4 +1,4 @@
-# swift-rest
+# Making Network Call using Async & Parsing JSON Data
 
 [Read the article in Medium](https://medium.com/@jakir/making-network-call-using-async-parsing-json-data-e4a840a6ce8a)
 
